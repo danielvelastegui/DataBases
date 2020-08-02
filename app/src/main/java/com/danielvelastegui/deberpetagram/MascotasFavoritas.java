@@ -14,15 +14,18 @@ import android.widget.Toast;
 
 import com.danielvelastegui.deberpetagram.adapter.MascotasFavoritasAdapter;
 import com.danielvelastegui.deberpetagram.contenedor.Mascota;
+import com.danielvelastegui.deberpetagram.presenter.IMascotasFavoritasPresenter;
+import com.danielvelastegui.deberpetagram.presenter.MascotasFavoritasPresenter;
 
 import java.util.ArrayList;
 
-public class MascotasFavoritas extends AppCompatActivity {
+public class MascotasFavoritas extends AppCompatActivity implements IMascotasFavoritasView {
     private Toolbar favoriteToolBar;
     private RecyclerView rvMascotasFavoritas;
+    private IMascotasFavoritasPresenter presenter;
 
     ArrayList<Mascota> mascotasFavoritas = new ArrayList<>();
-    MascotasFavoritasAdapter adaptador;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,8 @@ public class MascotasFavoritas extends AppCompatActivity {
         rvMascotasFavoritas = findViewById(R.id.rvMascotasFavoritas);
         setSupportActionBar(favoriteToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        LinearLayoutManager llm = new LinearLayoutManager(MascotasFavoritas.this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        rvMascotasFavoritas.setLayoutManager(llm);
-        mascotasFavoritas.add(new Mascota(R.drawable.ic_mascota01, "Bruno"));
-        inicializarRVFavoritas();
+        createVerticalLinearLayout();
+        presenter = new MascotasFavoritasPresenter(this, MascotasFavoritas.this);
     }
 
     @Override
@@ -64,8 +63,22 @@ public class MascotasFavoritas extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void inicializarRVFavoritas(){
-        adaptador = new MascotasFavoritasAdapter(mascotasFavoritas);
-        rvMascotasFavoritas.setAdapter(adaptador);
+    @Override
+    public void createVerticalLinearLayout() {
+        LinearLayoutManager llm = new LinearLayoutManager(MascotasFavoritas.this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rvMascotasFavoritas.setLayoutManager(llm);
+    }
+
+    @Override
+    public MascotasFavoritasAdapter iniciarAdaptador(ArrayList<Mascota> mascotas) {
+        MascotasFavoritasAdapter adaptador;
+        adaptador = new MascotasFavoritasAdapter(mascotas);
+        return adaptador;
+    }
+
+    @Override
+    public void iniciarRV(MascotasFavoritasAdapter adapter) {
+        rvMascotasFavoritas.setAdapter(adapter);
     }
 }

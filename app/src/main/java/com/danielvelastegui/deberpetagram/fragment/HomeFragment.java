@@ -13,15 +13,17 @@ import android.view.ViewGroup;
 import com.danielvelastegui.deberpetagram.R;
 import com.danielvelastegui.deberpetagram.adapter.MascotasAdapter;
 import com.danielvelastegui.deberpetagram.contenedor.Mascota;
+import com.danielvelastegui.deberpetagram.presenter.HomeFragmentPresenter;
+import com.danielvelastegui.deberpetagram.presenter.IHomeFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IHomeFragmentView {
 
     ArrayList<Mascota> misMascotas = new ArrayList<>();
     ArrayList<Mascota> mascotasGustadas = new ArrayList<>();
-    MascotasAdapter adaptador;
     private RecyclerView rvMascotas;
+    private IHomeFragmentPresenter presenter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,26 +71,30 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         rvMascotas = v.findViewById(R.id.rvMascotas);
+        createVerticalLinearLayout();
+        presenter =new HomeFragmentPresenter(this, getContext());
 
+        return v;
+    }
+
+    @Override
+    public void createVerticalLinearLayout() {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
         rvMascotas.setLayoutManager(llm);
-
-        crearMascotas();
-        inicializarRV();
-        return v;
     }
 
-    private void crearMascotas(){
-        misMascotas.add(new Mascota(R.drawable.ic_mascota01, "Bruno"));
-        misMascotas.add(new Mascota(R.drawable.ic_mascota02, "Jack"));
-        misMascotas.add(new Mascota(R.drawable.ic_mascota3, "Paco"));
-        misMascotas.add((new Mascota(R.drawable.ic_mascota4, "Hercules")));
+    @Override
+    public MascotasAdapter iniciarAdaptador(ArrayList<Mascota> mascotas) {
+        MascotasAdapter adaptador;
+        adaptador = new MascotasAdapter(mascotas, getActivity());
+
+        return adaptador;
     }
 
-    private void inicializarRV(){
-        adaptador = new MascotasAdapter(misMascotas, getActivity(), mascotasGustadas);
-        rvMascotas.setAdapter(adaptador);
+    @Override
+    public void iniciarRV(MascotasAdapter adapter) {
+        rvMascotas.setAdapter(adapter);
     }
 }

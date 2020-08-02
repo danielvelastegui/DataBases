@@ -14,21 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.danielvelastegui.deberpetagram.contenedor.Mascota;
 import com.danielvelastegui.deberpetagram.R;
+import com.danielvelastegui.deberpetagram.db.ConstructorMascotas;
 
 import java.util.ArrayList;
 
 public class MascotasAdapter extends RecyclerView.Adapter<MascotasAdapter.MascotasViewHolder>{
 
     ArrayList<Mascota> misMascotas;
-    ArrayList<Mascota> mascotasFavoritas;
     int meGustas;
     Activity activity;
 
-    public MascotasAdapter(ArrayList<Mascota> misMascotas, Activity activity, ArrayList<Mascota> mascotasFavoritas){
+    public MascotasAdapter(ArrayList<Mascota> misMascotas, Activity activity){
         this.misMascotas = misMascotas;
         this.activity = activity;
         this.meGustas = 0;
-        this.mascotasFavoritas = mascotasFavoritas;
     }
 
     @NonNull
@@ -55,15 +54,16 @@ public class MascotasAdapter extends RecyclerView.Adapter<MascotasAdapter.Mascot
                     String mensajeToastLike = "Se agrego a favoritos a " + miMascota.getNombre();
                     Toast.makeText(activity, mensajeToastLike, Toast.LENGTH_SHORT).show();
                     meGustas = 1;
-                    miMascota.setMeGustas(miMascota.getMeGustas() + 1);
-                    holder.tvMeGustasCV.setText(String.valueOf(meGustas));
-                    mascotasFavoritas.add(miMascota);
+                    ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                    constructorMascotas.darLikeMascota(miMascota);
+                    holder.tvMeGustasCV.setText(String.valueOf(constructorMascotas.obtenerLike(miMascota)));
                 }else if(meGustas == 1){
                     String mensajeToastDisike = "Se elimino de favoritos a " + miMascota.getNombre();
                     Toast.makeText(activity, mensajeToastDisike, Toast.LENGTH_SHORT).show();
                     meGustas = 0;
-                    miMascota.setMeGustas(miMascota.getMeGustas() - 1);
-                    holder.tvMeGustasCV.setText(String.valueOf(meGustas));
+                    ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                    constructorMascotas.eliminarMascotaFavorita(miMascota);
+                    holder.tvMeGustasCV.setText(String.valueOf(constructorMascotas.obtenerLike(miMascota)));
                 }
             }
         });
