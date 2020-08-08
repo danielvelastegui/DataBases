@@ -4,20 +4,24 @@
 xmlns:android="http://schemas.android.com/apk/res/android"  >
 
 
-    <item
+    <!--item
         android:id="@+id/mEstrella"
         android:orderInCategory="0"
         android:title="@string/menu_favoritos"
         app:showAsAction="always"
         android:icon="@drawable/ic_estrella"
-        />
+        />-->
+    <item
+        android:id="@+id/mConfigurar"
+        android:orderInCategory="1"
+        android:title="@string/configurar_cuenta" />
     <item
         android:id="@+id/mContacto"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="@string/menu_contacto" />
     <item
         android:id="@+id/mAcerca"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="@string/menu_acerca" />
 
 

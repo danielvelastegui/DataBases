@@ -1,12 +1,19 @@
 package com.danielvelastegui.deberpetagram.contenedor;
 
 public class Mascota {
-    private int id;
-    private int foto;
+    private String id;
+    private String foto;
     private String nombre;
     private int meGustas;
 
-    public Mascota(int foto, String nombre) {
+    public Mascota(String id, String foto, String nombre, int meGustas) {
+        this.id = id;
+        this.foto = foto;
+        this.nombre = nombre;
+        this.meGustas = meGustas;
+    }
+
+    public Mascota(String foto, String nombre) {
         this.foto = foto;
         this.nombre = nombre;
         this.meGustas = 0;
@@ -32,19 +39,19 @@ public class Mascota {
         this.meGustas = meGustas;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

@@ -24,15 +24,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
 
 
-            <ImageButton
+            <!--ImageButton
                 android:id="@+id/imgHuesoVacioCV"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/ic_hueso_vacio" />
+                android:src="@drawable/ic_hueso_vacio" /-->
 
             <TextView
                 android:id="@+id/tvNombreCV"

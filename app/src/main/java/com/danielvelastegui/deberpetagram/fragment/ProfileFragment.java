@@ -87,15 +87,15 @@ public class ProfileFragment extends Fragment {
         GridLayoutManager glm = new GridLayoutManager(getActivity(), 3);
         rvProfile.setLayoutManager(glm);
 
-        cargarPublicaciones();
+//        cargarPublicaciones();
         inicializarRV();
 
         return v;
     }
 
-    public void cargarPublicaciones(){
-        publicacionesMascota.add(new Mascota(R.drawable.ic_mascota02, "Jack"));
-    }
+//    public void cargarPublicaciones(){
+//        publicacionesMascota.add(new Mascota(R.drawable.ic_mascota02, "Jack"));
+//    }
 
     public void inicializarRV(){
         adaptador = new ProfileAdapter(publicacionesMascota);

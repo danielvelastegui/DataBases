@@ -80,23 +80,23 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         Cursor registros = db.rawQuery(query, null);
 
-        while(registros.moveToNext()){
-            Mascota mascotaActual = new Mascota();
-
-            mascotaActual.setId(registros.getInt(0));
-            mascotaActual.setNombre(registros.getString(1));
-            mascotaActual.setFoto(registros.getInt(2));
-
-            String queryLikes = "SELECT COUNT (" + ConstantesBD.TABLE_LIKES_NUMERO + ")"
-                                + " FROM " + ConstantesBD.TABLE_LIKES
-                                + " WHERE " + mascotaActual.getId() + " = " + ConstantesBD.TABLE_LIKES_ID_PETS_FK;
-            Cursor registrosLikes = db.rawQuery(queryLikes, null);
-            if(registrosLikes.moveToNext()){
-                mascotaActual.setMeGustas(registrosLikes.getInt(0));
-            }
-
-            mascotas.add(mascotaActual);
-        }
+//        while(registros.moveToNext()){
+//            Mascota mascotaActual = new Mascota();
+//
+//            mascotaActual.setId(registros.getInt(0));
+//            mascotaActual.setNombre(registros.getString(1));
+//            mascotaActual.setFoto(registros.getInt(2));
+//
+//            String queryLikes = "SELECT COUNT (" + ConstantesBD.TABLE_LIKES_NUMERO + ")"
+//                                + " FROM " + ConstantesBD.TABLE_LIKES
+//                                + " WHERE " + mascotaActual.getId() + " = " + ConstantesBD.TABLE_LIKES_ID_PETS_FK;
+//            Cursor registrosLikes = db.rawQuery(queryLikes, null);
+//            if(registrosLikes.moveToNext()){
+//                mascotaActual.setMeGustas(registrosLikes.getInt(0));
+//            }
+//
+//            mascotas.add(mascotaActual);
+//        }
         db.close();
         return mascotas;
     }
@@ -109,23 +109,23 @@ public class BaseDatos extends SQLiteOpenHelper {
         Cursor registros = db.rawQuery(query, null);
 
 
-        while (registros.moveToNext()){
-            Mascota mascotaActual = new Mascota();
-
-            mascotaActual.setId(registros.getInt(1));
-            mascotaActual.setNombre(registros.getString(4));
-            mascotaActual.setFoto(registros.getInt(5));
-
-            String queryLikes = "SELECT COUNT (" + ConstantesBD.TABLE_LIKES_NUMERO + ")"
-                    + " FROM " + ConstantesBD.TABLE_LIKES
-                    + " WHERE " + mascotaActual.getId() + " = " + ConstantesBD.TABLE_LIKES_ID_PETS_FK;
-            Cursor registrosLikes = db.rawQuery(queryLikes, null);
-            if(registrosLikes.moveToNext()){
-                mascotaActual.setMeGustas(registrosLikes.getInt(0));
-            }
-
-            mascotasFavoritas.add(mascotaActual);
-        }
+//        while (registros.moveToNext()){
+//            Mascota mascotaActual = new Mascota();
+//
+//            mascotaActual.setId(registros.getInt(1));
+//            mascotaActual.setNombre(registros.getString(4));
+//            mascotaActual.setFoto(registros.getInt(5));
+//
+//            String queryLikes = "SELECT COUNT (" + ConstantesBD.TABLE_LIKES_NUMERO + ")"
+//                    + " FROM " + ConstantesBD.TABLE_LIKES
+//                    + " WHERE " + mascotaActual.getId() + " = " + ConstantesBD.TABLE_LIKES_ID_PETS_FK;
+//            Cursor registrosLikes = db.rawQuery(queryLikes, null);
+//            if(registrosLikes.moveToNext()){
+//                mascotaActual.setMeGustas(registrosLikes.getInt(0));
+//            }
+//
+//            mascotasFavoritas.add(mascotaActual);
+//        }
 
         db.close();
         return mascotasFavoritas;

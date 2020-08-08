@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.mEstrella:
-                abrirFavoritos();
-                break;
+//            case R.id.mEstrella:
+//                abrirFavoritos();
+//                break;
 
             case R.id.mAcerca:
                 Intent intentAbout = new Intent(MainActivity.this, About.class);
@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mContacto:
                 Intent intentContact = new Intent(MainActivity.this, Contact.class);
                 startActivity(intentContact);
+                break;
+            case R.id.mConfigurar:
+                Intent intentSettings = new Intent(MainActivity.this, Settings.class);
+                startActivity(intentSettings);
                 break;
         }
         return super.onOptionsItemSelected(item);

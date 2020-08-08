@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.danielvelastegui.deberpetagram.MascotasFavoritas;
 import com.danielvelastegui.deberpetagram.R;
 import com.danielvelastegui.deberpetagram.contenedor.Mascota;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,12 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
         Mascota publicacion = miMascota.get(position);
 
-        holder.imgPublicacionCV.setImageResource(publicacion.getFoto());
+        //holder.imgPublicacionCV.setImageResource(publicacion.getFoto());
+        Picasso.get()
+                .load(publicacion.getFoto())
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon)
+                .into(holder.imgPublicacionCV);
         holder.tvMeGustasPublicacionCV.setText(String.valueOf(publicacion.getMeGustas()));
     }
 

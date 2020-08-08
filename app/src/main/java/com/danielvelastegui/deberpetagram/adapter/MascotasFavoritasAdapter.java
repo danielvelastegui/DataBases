@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.danielvelastegui.deberpetagram.contenedor.Mascota;
 import com.danielvelastegui.deberpetagram.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,12 @@ public class MascotasFavoritasAdapter extends RecyclerView.Adapter<MascotasFavor
     public void onBindViewHolder(@NonNull MascotasFavoritasViewHolder holder, int position) {
         Mascota mascotaFavorita = mascotasFavoritas.get(position);
 
-        holder.imgFotoFavoritaCV.setImageResource(mascotaFavorita.getFoto());
+        Picasso.get()
+                .load(mascotaFavorita.getFoto())
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon)
+                .into(holder.imgFotoFavoritaCV);
+        //holder.imgFotoFavoritaCV.setImageResource(mascotaFavorita.getFoto());
         holder.tvNombreFavoritaCV.setText(mascotaFavorita.getNombre());
         holder.tvMeGustasFavoritaCV.setText(String.valueOf(mascotaFavorita.getMeGustas()));
     }

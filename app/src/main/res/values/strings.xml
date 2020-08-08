@@ -19,4 +19,7 @@
     <string name="contact">Contactanos</string>
     <string name="javamailsuccess">Mensaje Enviado</string>
     <string name="javamail_sending">Enviando Mensaje</string>
+    <string name="configurar_cuenta">Configurar Cuenta</string>
+    <string name="usuario">Escribe un usuario</string>
+    <string name="guardar_cuenta">Guardar Cuenta</string>
 </resources>
